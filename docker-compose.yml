@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  octra-wallet-generator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    restart: unless-stopped
+    container_name: octra-wallet-gen
+    environment:
+      - NODE_ENV=production
+    # Optional: mount volume for wallet files if you want persistence
+    # volumes:
+    #   - ./wallets:/home/octra/wallets:rw
+    networks:
+      - octra-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8888"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+networks:
+  octra-net:
+    driver: bridge
