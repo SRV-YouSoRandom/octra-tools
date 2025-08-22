@@ -1,11 +1,10 @@
+version: '3.8'
+
 services:
   octra-wallet-generator:
-    # Use pre-built image from Docker Hub instead of building
-    image: srvsorandom/octra-wallet-generator:latest
-    # Remove the build section since we're using a pre-built image
-    # build:
-    #   context: .
-    #   dockerfile: Dockerfile
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8888:8888"
     restart: unless-stopped

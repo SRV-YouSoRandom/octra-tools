@@ -21,8 +21,14 @@ This repository contains Docker configuration to run the Octra Wallet Generator 
 ### Option 1: Using Docker Compose (Recommended)
 
 ```bash
-# Build and run
+# End users (uses pre-built image)
 docker compose up -d
+
+# Developers (builds from source) 
+docker compose -f docker-compose.dev.yml up -d --build
+
+# Simple one-liner for anyone
+docker run -d -p 8888:8888 srvsorandom/octra-wallet-generator:latest
 
 # View logs
 docker compose logs -f
